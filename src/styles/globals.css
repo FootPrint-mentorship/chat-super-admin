@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/public/fonts/gilroy/Gilroy-Regular.ttf") format('truetype'),
+       url("/public/fonts/gilroy/Gilroy-Light.ttf") format('truetype'),
+       url("/public/fonts/gilroy/Gilroy-SemiBold.ttf") format('truetype'),
+       url("/public/fonts/gilroy/Gilroy-Bold.ttf") format('truetype'),
+       url("/public/fonts/gilroy/Gilroy-Medium.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  --background: #FCFCFE;
+  --foreground: #25396F;
+}
+
+*, ::before, ::after {
+  border-color: transparent;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: var(--foreground);
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.flowbite-popover-content {
+    border: none !important;
+    border-color: unset !important;
+}
