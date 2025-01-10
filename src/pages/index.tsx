@@ -90,7 +90,7 @@ function Home() {
 
 
     return (<>
-        <DashboardLayout title={"Dashboard"} header={'NGO'}>
+        <DashboardLayout title={"NGOs"} header={'NGO'}>
 
             <div className={'hidden md:inline'}>
                 <Header userName={"karlkeller"} toggleMap={toggleMap} showMap={showMap} type={type}/>

@@ -6,11 +6,11 @@ function User() {
 
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <button type="button"
-                        className="flex text-sm bg-gray-800 rounded-full md:me-0 "
+                        className="flex text-sm bg-[#F0F0F0] rounded-[36px] md:me-0 "
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                     <span className="sr-only">Open user menu</span>
-                    <img className="w-10 h-10 border-2 border-[#17CE89] border-solid rounded-full" src="/assets/user/avatar.jpeg" alt="user avatar" />
+                    <img className="w-9 h-9 border border-[#F0F0F0] border-solid rounded-[36px]" src="/assets/user/avatar.jpeg" alt="user avatar" />
 
                 </button>
 
