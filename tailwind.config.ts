@@ -40,7 +40,7 @@ export default {
         loginBtnTextSize: "16px",
       },
       fontFamily: {
-        sans: ["Ubuntu", "Helvetica", "Arial", "sans-serif"],
+        sans: ["Gilroy","Ubuntu", "Helvetica", "Arial", "sans-serif"],
         serif: ["Roboto", "Helvetica", "Arial", "sans-serif"],
         arial: ["FrutigerLTStd", "Helvetica", "Arial", "sans-serif"],
         yamamoto: ["Yantramanav", "Arial", "sans-serif"],

@@ -5,7 +5,7 @@ function Notification({isOpen,setIsOpen}:{setIsOpen: React.Dispatch<React.SetSta
     return (
         <div className={'relative cursor-pointer'}>
 
-            <svg onClick={()=>{
+            {/* <svg onClick={()=>{
                 setIsOpen(!isOpen);
             }} className="w-6 h-6 text-primaryTextColor" width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd"
@@ -18,7 +18,7 @@ function Notification({isOpen,setIsOpen}:{setIsOpen: React.Dispatch<React.SetSta
             <span className="sr-only">Notifications</span>
             <div
                 className="absolute inline-flex items-center justify-center w-2 h-2 p-[0.4rem] text-[6px] font-bold text-white bg-danger rounded-full -top-2 -end-2 ">20
-            </div>
+            </div> */}
 
 
 
