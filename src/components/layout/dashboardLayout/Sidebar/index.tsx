@@ -17,7 +17,7 @@ function Sidebar() {
       active: router.pathname === "/",
       icon: (
         <svg
-          className="w-4 h-4 "
+          className="w-6 h-6 "
           xmlns="http://www.w3.org/2000/svg"
           height="24"
           viewBox="0 0 24 24"
@@ -37,9 +37,9 @@ function Sidebar() {
       active: router.pathname.includes("/projects"),
       icon: (
         <svg
-          className="w-4 h-4"
-          width="20"
-          height="20"
+          className="w-6 h-6"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -57,9 +57,9 @@ function Sidebar() {
       active: router.pathname.includes("/beneficiaries"),
       icon: (
         <svg
-          className="w-4 h-4 "
-          width="22"
-          height="20"
+          className="w-6 h-6 "
+          width="24"
+          height="24"
           viewBox="0 0 22 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -77,9 +77,9 @@ function Sidebar() {
       active: router.pathname.includes("/vendors"),
       icon: (
         <svg
-          className="w-4 h-4 "
+          className="w-6 h-6 "
           width="24"
-          height="16"
+          height="24"
           viewBox="0 0 24 16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -98,8 +98,8 @@ function Sidebar() {
       icon: (
         <svg
           className="w-4 h-4 "
-          width="20"
-          height="19"
+          width="24"
+          height="14"
           viewBox="0 0 20 19"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ function Sidebar() {
       active: router.pathname.includes("/marketplace"),
       icon: (
         <svg
-          className="w-4 h-4"
+          className="w-6 h-6"
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -138,8 +138,8 @@ function Sidebar() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
         >
@@ -225,7 +225,7 @@ function Sidebar() {
           <li key={item.name}>
             <Link href={item.link}>
               <div
-                className={`p-3 flex items-center gap-2 rounded-[10px] cursor-pointer text-[18px] font-bold text-center  italic ${
+                className={`p-3 flex items-center gap-2 rounded-[10px] cursor-pointer text-[18px] font-medium text-center font-sans ${
                   item.active
                     ? "bg-secondaryBgColor text-primaryButtonTextColor font-semibold"
                     : "text-primaryTextColor hover:text-secondaryBgColor hover:bg-primaryHover"
