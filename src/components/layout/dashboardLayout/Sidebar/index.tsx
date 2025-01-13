@@ -227,7 +227,7 @@ function Sidebar() {
               <div
                 className={`p-3 flex items-center gap-2 rounded-[10px] cursor-pointer text-[18px] font-medium text-center font-sans ${
                   item.active
-                    ? "bg-secondaryBgColor text-primaryButtonTextColor font-semibold"
+                    ? "bg-secondaryBgColor text-primaryButtonTextColor font-semibold italic"
                     : "text-primaryTextColor hover:text-secondaryBgColor hover:bg-primaryHover"
                 }`}
               >
