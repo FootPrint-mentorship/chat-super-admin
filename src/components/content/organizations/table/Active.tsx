@@ -29,7 +29,7 @@ const projects: Project[] = [
     name: "Blue Orange Foundation",
     emailAddress: "example@gmail.com",
     disbursed: "$10,050,000",
-    beneficiaries: "$82,000",
+    beneficiaries: "82,000",
     status: "Active",
     date: "12 Dec, 2022",
     actions: "",
