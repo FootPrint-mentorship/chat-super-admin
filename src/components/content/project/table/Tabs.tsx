@@ -15,7 +15,7 @@ function Tabs({setActiveTab,activeTab, tabItems}: TabsProps) {
                     <li onClick={() => {
                         setActiveTab(index + 1)
                     }}
-                        className={`inline-block text-[12px] lg:text-xs font-bold cursor-pointer ${activeTab === index + 1 ? 'border-[#17CE89]' : 'border-transparent'} ${activeTab === index + 1 ? 'text-[#17CE89]' : 'inherit'} p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300`}
+                        className={`inline-block text-[12px] lg:text-[18px] font-bold cursor-pointer ${activeTab === index + 1 ? 'border-[#17CE89]' : 'border-transparent'} ${activeTab === index + 1 ? 'text-[#17CE89]' : 'inherit'} p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300`}
                         key={index}>{capitalize(item.name)}</li>
                 ))}
 
