@@ -20,7 +20,7 @@ type Project = {
   FirstName: string;
   LastName: string;
   date: string;
-  KYCstatus: "Active" | "Inactive";
+  KYCstatus: "successful" | "unsuccessful";
   actions: string;
 };
 
@@ -28,53 +28,36 @@ const projects: Project[] = [
   {
     OrganizationName : "Blue Orange Foundation",
     emailAddress: "example@gmail.com",
-    FirstName: "Mensah",
+    FirstName: "Hakeem",
     LastName: "Mensah",
-    KYCstatus: "Active",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
     OrganizationName: "Pentagon LLC",
     emailAddress: "example@gmail.com",
-    FirstName: "Mensah",
+    FirstName: "Hakeem",
     LastName: "Mensah",
-    KYCstatus: "Active",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
     OrganizationName: "Cater & Care Foundation",
     emailAddress: "example@gmail.com",
-    FirstName: "Mensah",
+    FirstName: "Hakeem",
     LastName: "Mensah",
-    KYCstatus: "Inactive",
+    KYCstatus: "unsuccessful",
     date: "12 Dec, 2022",
     actions: "",
   },
-  {
-    OrganizationName: "Foundational Black Americans",
-    emailAddress: "example@gmail.com",
-    FirstName: "Mensah",
-    LastName: "Mensah",
-    KYCstatus: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
-  {
-    OrganizationName: "John Doe & Co",
-    emailAddress: "example@gmail.com",
-    FirstName: "Mensah",
-    LastName: "Mensah",
-    KYCstatus: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
+  
 ];
 
 const statusClasses = {
-  Active: "bg-green-[#D1F7C4] text-green-700",
-  Inactive: "bg-gray-100 text-gray-700",
+    successful: "bg-gray-100 text-gray-700",
+  unsuccessful: "bg-[#FFFDED] text-[#F2994A]",
 };
 
 const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
@@ -204,7 +187,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
               <td className="px-4 py-6 mt-8 text-xs">
                 <span
                   className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
-                    project.KYCstatus === "Active" ? `bg-[#D1F7C4]` : `black`
+                    project.KYCstatus === "successful" ? `bg-[#D1F7C4]` : `black`
                   } ${statusClasses[project.KYCstatus]}`}
                 >
                   {project.KYCstatus}
