@@ -30,6 +30,7 @@ import ProjectsTable from "@/components/content/project/table/ProjectsTable";
 import ProjectsList from "@/components/content/project/table/ProjectTableMobile";
 import Organization from "@/components/content/organizations/table/Active";
 import PendingApproval from "@/components/content/organizations/table/PendingApproval"
+import AddOrganizationForm from "@/components/modal/CreateNew";
 
 const MapComponent = dynamic(
   () => import("@/components/content/dashboard/MapComponent"),
@@ -42,15 +43,15 @@ const downloadExcel = ()=>{
     // const worksheet = XLSX.utils.json_to_sheet("");
 }
 
-interface LargeScreenProps {
+interface Home {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   search: string;
-  setSelectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectModalOpen : React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
-  const smallScreen = useMediaQuery({ query: "(max-width: 1024px)" });
+function Home({ setSearch, search, setSelectModalOpen }: Home) {
 
+  const smallScreen = useMediaQuery({ query: "(max-width: 1024px)" });
   const [showMap, setShowMap] = useState(false);
 
   const [type, setType] = useState<string>("normal");
@@ -58,6 +59,7 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
   const [filterOption, setFilterOption] = useState<string>("24H");
   const [isOpen, setIsOpen] = useState<"item" | "cash" | undefined>(undefined);
   const [activeTab, setActiveTab] = React.useState(1);
+  const [isModalOpen, setModalOpen] = React.useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -92,6 +94,16 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
     { name: "Pending Approval", value: 2 },
   ];
 
+  const handleOpenModal = () => {
+    setActiveTab(2); // Switch to the "Pending Approval" tab
+    setModalOpen(true); // Optionally open a modal if needed
+  };
+  
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <DashboardLayout title={"NGOs"} header={"NGO"}>
@@ -120,13 +132,15 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
 
           <div className={"flex gap-2"}>
             <Button
-              onClick={() => setSelectModalOpen(true)}
+               onClick={handleOpenModal}
               icon={<AddIcon />}
               text={"Create New"}
               variant={"contained"}
               color={"success"}
               className={"rounded-lg"}
             />
+            
+            
             <Button
               onClick={downloadExcel}
               icon={<ExcelIcon />}
@@ -185,6 +199,9 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
           {smallScreen && <DateMetricsCard />}
           {smallScreen && <VendorMetricsCard />}
         </div>
+        {isModalOpen && (
+        <AddOrganizationForm onClose={handleCloseModal} />
+      )}
       </DashboardLayout>
     </>
   );

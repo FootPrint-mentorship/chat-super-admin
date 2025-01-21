@@ -56,7 +56,7 @@ const projects: Project[] = [
 ];
 
 const statusClasses = {
-    successful: "bg-gray-100 text-gray-700",
+    successful: "bg-[#35C78A] text-gray-700",
   unsuccessful: "bg-[#FFFDED] text-[#F2994A]",
 };
 
