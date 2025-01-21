@@ -15,66 +15,49 @@ interface ProjectTableProps {
 }
 
 type Project = {
-  name: string;
+  OrganizationName: string;
   emailAddress: string;
-  disbursed: string;
-  beneficiaries: string;
+  FirstName: string;
+  LastName: string;
   date: string;
-  status: "Active" | "Inactive";
+  KYCstatus: "successful" | "unsuccessful";
   actions: string;
 };
 
 const projects: Project[] = [
   {
-    name: "Blue Orange Foundation",
+    OrganizationName : "Blue Orange Foundation",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "$82,000",
-    status: "Active",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
-    name: "Pentagon LLC",
+    OrganizationName: "Pentagon LLC",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
-    name: "Cater & Care Foundation",
+    OrganizationName: "Cater & Care Foundation",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Inactive",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "unsuccessful",
     date: "12 Dec, 2022",
     actions: "",
   },
-  {
-    name: "Foundational Black Americans",
-    emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
-  {
-    name: "John Doe & Co",
-    emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
+  
 ];
 
 const statusClasses = {
-  Active: "bg-green-[#D1F7C4] text-green-700",
-  Inactive: "bg-gray-100 text-gray-700",
+    successful: "bg-gray-100 text-gray-700",
+  unsuccessful: "bg-[#FFFDED] text-[#F2994A]",
 };
 
 const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
@@ -169,57 +152,48 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         <thead className={"bg-[#F7F7F7] h-[59px] shadow-none border-none"}>
           <tr className="bg-[#F7F7F7] shadow-none border-none ">
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Name
+              Organization Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Email address
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Disbursed
+              First Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Beneficiaries
+              Last Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Status
+              KYC Status
             </th>
-            <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Actions
-            </th>
-            <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]"></th>
+           
           </tr>
         </thead>
         <tbody>
           {projects.map((project, index) => (
             <tr key={index}>
               <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
-                {project.name}
+                {project.OrganizationName}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.emailAddress}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
-                {project.disbursed}
+                {project.FirstName}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
-                {project.beneficiaries}
+                {project.LastName}
               </td>
               <td className="px-4 py-6 mt-8 text-xs">
                 <span
                   className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
-                    project.status === "Active" ? `bg-[#D1F7C4]` : `black`
-                  } ${statusClasses[project.status]}`}
+                    project.KYCstatus === "successful" ? `bg-[#D1F7C4]` : `black`
+                  } ${statusClasses[project.KYCstatus]}`}
                 >
-                  {project.status}
+                  {project.KYCstatus}
                 </span>
               </td>
-              <td className="px-4 py-6 mt-8 h-10 w-10 text-xs">
-                <Button>
-                  <div className="border border-[#707FA3] rounded py-[8px] px-[12px]">
-                    <ArrowDownIcon height="20" width="20" fill="#17CE89" />
-                  </div>
-                </Button>
-              </td>
+             
             </tr>
           ))}
         </tbody>
