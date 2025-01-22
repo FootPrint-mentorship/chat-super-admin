@@ -63,19 +63,19 @@ function Index() {
 }
 const tabItems = [
   {
-    name: "Cash Projects",
+    name: "All Donors",
     value: 1,
   },
 
   {
-    name: "Item Project",
+    name: "Withdrawal Requests",
     value: 2,
   },
 
-  {
-    name: "Archived Projects",
-    value: 2,
-  },
+  // {
+  //   name: "Archived Projects222A",
+  //   value: 2,
+  // },
 ];
 
 Index.getLayout = (page: ReactNode) => {

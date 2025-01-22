@@ -8,6 +8,7 @@ import PauseProjectModal from "@/components/modal/project/PauseProjectMoadal";
 import Link from "next/link";
 import ArrowDownIcon from "@/components/icon/ArrowDownIcon";
 import { Button } from "flowbite-react";
+import LivenessCapture from "@/components/modal/project/LivenessCapture";
 
 interface ProjectTableProps {
   setIsOpen: React.Dispatch<React.SetStateAction<"item" | "cash" | undefined>>;
@@ -70,6 +71,21 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
     undefined
   );
   const [openPause, setOpenPause] = useState<string | undefined>(undefined);
+  const [isModalOpen, setModalOpen] = React.useState(false);
+
+
+  const handleOpenModal = () => {
+    // Switch to the "Pending Approval" tab
+     setModalOpen(true); // Optionally open a modal if needed
+   };
+   
+ 
+   const handleCloseModal = () => {
+     setModalOpen(false);
+   };
+
+
+
 
   return (
     <div className=" bg-white rounded-lg shadow-md">
@@ -108,7 +124,9 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
           }}
         />
       )}
-
+      {isModalOpen && (
+        <LivenessCapture onClose={handleCloseModal} />
+      )}
       <div className="px-4 flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold font-sans">Organizations</h2>
         <div>
@@ -148,8 +166,8 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </div>
       </div>
 
-      <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F]">
-        <thead className={"bg-[#F7F7F7] h-[59px] shadow-none border-none"}>
+      <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F] ">
+        <thead className={"bg-[#F7F7F7] w-full h-[59px] shadow-none border-none"}>
           <tr className="bg-[#F7F7F7] shadow-none border-none ">
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Organization Name
@@ -172,8 +190,8 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         <tbody>
           {projects.map((project, index) => (
             <tr key={index}
-            onClick={() => window.location.href = "http://localhost:3004/ngo-details"}
-             className="cursor-pointer hover:bg-gray-100"
+            onClick={handleOpenModal}
+             className="cursor-pointer hover:bg-gray-100 "
             >
               
               <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
@@ -199,7 +217,27 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
                   {project.KYCstatus}
                 </span>
               </td>
-      
+
+ <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
+              <button className="p-2"
+              
+              
+              >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        className="w-5 h-5 text-[#25396F]">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 5.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12 12a.75.75 0 100-1.5.75.75 0 000 1.5zM12 18.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+        />
+      </svg>
+    </button>
+      </td>
             </tr>
           ))}
         </tbody>
@@ -260,6 +298,6 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default OrganizationsTable;

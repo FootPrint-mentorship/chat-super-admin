@@ -5,6 +5,7 @@ import Filter from "@/components/icon/Filter";
 import SearchIcon from "@/components/icon/SearchIcon";
 import SortIcon from "@/components/icon/SortIcon";
 import AddIcon from "@/components/icon/AddIcon";
+import ExcelIcon from '@/components/icon/ExcelIcon';
 
 interface LargeScreenProps {
     setSearch: React.Dispatch<React.SetStateAction<string>>;
@@ -13,6 +14,10 @@ interface LargeScreenProps {
 }
 
 function LargeScreen({setSearch,search,setSelectModalOpen}:LargeScreenProps) {
+    function downloadExcel(): void {
+        throw new Error('Function not implemented.');
+    }
+
     return (
         <div className={'hidden lg:flex items-center justify-between w-full'}>
 
@@ -29,8 +34,17 @@ function LargeScreen({setSearch,search,setSelectModalOpen}:LargeScreenProps) {
                 />
             </div>
 
-            <Button onClick={() => setSelectModalOpen(true)}
-                    icon={<AddIcon/>} text={'Create Project'} variant={'contained'} color={'success'} className={'rounded-lg'}/>
+            {/* <Button onClick={() => setSelectModalOpen(true)}
+                    icon={<AddIcon/>} text={'Create Project'} variant={'contained'} color={'success'} className={'rounded-lg'}/> */}
+
+<Button
+              onClick={downloadExcel}
+              icon={<ExcelIcon />}
+              text={"Export"}
+              variant={"outlined"}
+              color={"success"}
+              className={"rounded-lg"}
+            />
         </div>
     );
 }

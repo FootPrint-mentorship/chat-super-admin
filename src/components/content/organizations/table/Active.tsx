@@ -192,8 +192,6 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         <tbody>
           {projects.map((project, index) => (
             <tr key={index}
-              onClick={() => window.location.href = "http://localhost:3004/ngo-details"}
-             className="cursor-pointer hover:bg-gray-100"
             >
               <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
                 {project.name}

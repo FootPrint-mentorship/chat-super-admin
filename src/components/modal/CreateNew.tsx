@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // Removed the import for 'react-phone-input-2' due to the error
-import PhoneInput from 'react-phone-input-2';
+import PhoneInput from "react-phone-input-2";
 import { useNavigate } from "react-router-dom";
 
 interface OrganizationFormData {
@@ -12,8 +12,9 @@ interface OrganizationFormData {
   phoneNumber: string;
 }
 
-
-const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({
+  onClose,
+}) => {
   const [formData, setFormData] = useState<OrganizationFormData>({
     countryCode: "",
     name: "",
@@ -59,7 +60,7 @@ const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => 
   const [isModalOpen, setModalOpen] = React.useState(false);
   const handleOpenModal = () => {
     setModalOpen(true);
-    
+
     // Optionally open a modal if needed
   };
 
@@ -151,33 +152,31 @@ const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => 
           >
             Phone Number
           </label>
-         
+
           <div className="flex items-center border border-gray-300 rounded-lg  mb-4  bg-[#F5F6F8]  ">
-  
-  <select
-    className="p-2 bg-transparent text-gray-700 focus:ring-0 focus:outline-none border-r border-gray-300  "
-    value={selectedCountry.code}
-    onChange={(e) => handleCountryChange(e.target.value)}
-  >
-    {customCountries.map((country) => (
-      <option key={country.code} value={country.code}>
-        {country.flag} ({country.dialCode})
-      </option>
-    ))}
-  </select>
-  {/* Phone Input */}
-  <input
-    type="text"
-    className="flex-grow p-2 text-gray-700 focus:outline-none bg-[#F5F6F8]  "
-    placeholder="Enter phone number"
-    value={phoneNumber}
-    onChange={(e) => setPhoneNumber(e.target.value)}
-  />
-</div>
-          
+            <select
+              className="p-2 bg-transparent text-gray-700 focus:ring-0 focus:outline-none border-r border-gray-300  "
+              value={selectedCountry.code}
+              onChange={(e) => handleCountryChange(e.target.value)}
+            >
+              {customCountries.map((country) => (
+                <option key={country.code} value={country.code}>
+                  {country.flag} ({country.dialCode})
+                </option>
+              ))}
+            </select>
+            {/* Phone Input */}
+            <input
+              type="text"
+              className="flex-grow p-2 text-gray-700 focus:outline-none bg-[#F5F6F8]  "
+              placeholder="Enter phone number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
 
           <button
-       onClick={handleOpenModal}
+            onClick={handleOpenModal}
             type="submit"
             className="w-full bg-green-500 text-white rounded-lg p-2 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
           >
@@ -193,4 +192,3 @@ export default AddOrganizationForm;
 function setActiveTab(arg0: number) {
   throw new Error("Function not implemented.");
 }
-
