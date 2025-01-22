@@ -56,7 +56,7 @@ const projects: Project[] = [
 ];
 
 const statusClasses = {
-    successful: "bg-gray-100 text-gray-700",
+    successful: "bg-[#35C78A] text-gray-700",
   unsuccessful: "bg-[#FFFDED] text-[#F2994A]",
 };
 
@@ -171,9 +171,15 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </thead>
         <tbody>
           {projects.map((project, index) => (
-            <tr key={index}>
+            <tr key={index}
+            onClick={() => window.location.href = "http://localhost:3004/ngo-details"}
+             className="cursor-pointer hover:bg-gray-100"
+            >
+              
               <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
+  
                 {project.OrganizationName}
+              
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.emailAddress}
@@ -193,7 +199,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
                   {project.KYCstatus}
                 </span>
               </td>
-             
+      
             </tr>
           ))}
         </tbody>
