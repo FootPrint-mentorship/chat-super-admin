@@ -95,7 +95,7 @@ function Home({ setSearch, search, setSelectModalOpen }: Home) {
   ];
 
   const handleOpenModal = () => {
-    setActiveTab(2); // Switch to the "Pending Approval" tab
+   // Switch to the "Pending Approval" tab
     setModalOpen(true); // Optionally open a modal if needed
   };
   

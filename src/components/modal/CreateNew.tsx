@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // Removed the import for 'react-phone-input-2' due to the error
 import PhoneInput from 'react-phone-input-2';
-
+import { useNavigate } from "react-router-dom";
 
 interface OrganizationFormData {
   countryCode: string | number | readonly string[] | undefined;
@@ -56,6 +56,12 @@ const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => 
     }
   };
 
+  const [isModalOpen, setModalOpen] = React.useState(false);
+  const handleOpenModal = () => {
+    setModalOpen(true);
+    
+    // Optionally open a modal if needed
+  };
 
   return (
     <div className="fixed  inset-0 flex justify-center items-center bg-black bg-opacity-50">
@@ -171,6 +177,7 @@ const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => 
           
 
           <button
+       onClick={handleOpenModal}
             type="submit"
             className="w-full bg-green-500 text-white rounded-lg p-2 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
           >
@@ -183,3 +190,7 @@ const AddOrganizationForm: React.FC<{ onClose: () => void }> = ({ onClose }) => 
 };
 
 export default AddOrganizationForm;
+function setActiveTab(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+
