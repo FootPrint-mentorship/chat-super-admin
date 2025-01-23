@@ -8,6 +8,7 @@ import PauseProjectModal from "@/components/modal/project/PauseProjectMoadal";
 import Link from "next/link";
 import ArrowDownIcon from "@/components/icon/ArrowDownIcon";
 import { Button } from "flowbite-react";
+import LivenessCapture from "@/components/modal/project/LivenessCapture";
 
 interface ProjectTableProps {
   setIsOpen: React.Dispatch<React.SetStateAction<"item" | "cash" | undefined>>;
@@ -15,66 +16,49 @@ interface ProjectTableProps {
 }
 
 type Project = {
-  name: string;
+  OrganizationName: string;
   emailAddress: string;
-  disbursed: string;
-  beneficiaries: string;
+  FirstName: string;
+  LastName: string;
   date: string;
-  status: "Active" | "Inactive";
+  KYCstatus: "successful" | "unsuccessful";
   actions: string;
 };
 
 const projects: Project[] = [
   {
-    name: "Blue Orange Foundation",
+    OrganizationName : "Blue Orange Foundation",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "$82,000",
-    status: "Active",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
-    name: "Pentagon LLC",
+    OrganizationName: "Pentagon LLC",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "successful",
     date: "12 Dec, 2022",
     actions: "",
   },
   {
-    name: "Cater & Care Foundation",
+    OrganizationName: "Cater & Care Foundation",
     emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Inactive",
+    FirstName: "Hakeem",
+    LastName: "Mensah",
+    KYCstatus: "unsuccessful",
     date: "12 Dec, 2022",
     actions: "",
   },
-  {
-    name: "Foundational Black Americans",
-    emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
-  {
-    name: "John Doe & Co",
-    emailAddress: "example@gmail.com",
-    disbursed: "$10,050,000",
-    beneficiaries: "82,000",
-    status: "Active",
-    date: "12 Dec, 2022",
-    actions: "",
-  },
+  
 ];
 
 const statusClasses = {
-  Active: "bg-green-[#D1F7C4] text-green-700",
-  Inactive: "bg-gray-100 text-gray-700",
+    successful: "bg-[#35C78A] text-gray-700",
+  unsuccessful: "bg-[#FFFDED] text-[#F2994A]",
 };
 
 const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
@@ -87,6 +71,21 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
     undefined
   );
   const [openPause, setOpenPause] = useState<string | undefined>(undefined);
+  const [isModalOpen, setModalOpen] = React.useState(false);
+
+
+  const handleOpenModal = () => {
+    // Switch to the "Pending Approval" tab
+     setModalOpen(true); // Optionally open a modal if needed
+   };
+   
+ 
+   const handleCloseModal = () => {
+     setModalOpen(false);
+   };
+
+
+
 
   return (
     <div className=" bg-white rounded-lg shadow-md">
@@ -125,13 +124,15 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
           }}
         />
       )}
-
+      {isModalOpen && (
+        <LivenessCapture onClose={handleCloseModal} />
+      )}
       <div className="px-4 flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold font-sans">Organizations</h2>
         <div>
           <label className="mr-2 text-sm font-medium">Filter by:</label>
           <Select
-            className={"border-none"}
+            className={""}
             size={"md"}
             variant={"outlined"}
             value={listFilterBy}
@@ -165,61 +166,80 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </div>
       </div>
 
-      <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F]">
-        <thead className={"bg-[#F7F7F7] h-[59px] shadow-none border-none"}>
-          <tr className="bg-[#F7F7F7] shadow-none border-none ">
+      
+      <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
+          <thead className="h-[59px]">
+            <tr className="bg-[#F7F7F7]">
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Name
+              Organization Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Email address
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Disbursed
+              First Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Beneficiaries
+              Last Name
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Status
-            </th>
-            <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
-              Actions
+              KYC Status
             </th>
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]"></th>
+           
           </tr>
         </thead>
         <tbody>
           {projects.map((project, index) => (
-            <tr key={index}>
+            <tr key={index}
+            onClick={handleOpenModal}
+             className="cursor-pointer hover:bg-gray-100 "
+            >
+              
               <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
-                {project.name}
+  
+                {project.OrganizationName}
+              
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.emailAddress}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
-                {project.disbursed}
+                {project.FirstName}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
-                {project.beneficiaries}
+                {project.LastName}
               </td>
-              <td className="px-4 py-6 mt-8 text-xs">
+              {/* <td className="px-4 py-6 mt-8 text-xs"> */}
                 <span
                   className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
-                    project.status === "Active" ? `bg-[#D1F7C4]` : `black`
-                  } ${statusClasses[project.status]}`}
+                    project.KYCstatus === "successful" ? `bg-[#D1F7C4]` : `black`
+                  } ${statusClasses[project.KYCstatus]}`}
                 >
-                  {project.status}
+                  {project.KYCstatus}
                 </span>
-              </td>
-              <td className="px-4 py-6 mt-8 h-10 w-10 text-xs">
-                <Button>
-                  <div className="border border-[#707FA3] rounded py-[8px] px-[12px]">
-                    <ArrowDownIcon height="20" width="20" fill="#17CE89" />
-                  </div>
-                </Button>
-              </td>
+              {/* </td> */}
+
+ <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
+              <button className="p-2"
+              
+              
+              >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        className="w-5 h-5 text-[#25396F]">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 5.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12 12a.75.75 0 100-1.5.75.75 0 000 1.5zM12 18.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+        />
+      </svg>
+    </button>
+      </td>
             </tr>
           ))}
         </tbody>
@@ -280,6 +300,6 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default OrganizationsTable;

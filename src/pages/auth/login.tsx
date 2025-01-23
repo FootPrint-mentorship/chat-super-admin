@@ -27,7 +27,6 @@ const Login = () => {
 
         }
 
-        console.log('Login successful');
     };
 
     return (

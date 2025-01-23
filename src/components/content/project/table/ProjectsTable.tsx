@@ -7,6 +7,7 @@ import ArchiveProjectModal from "@/components/modal/project/ArchiveProjectModal"
 import DeleteCampaignModal from "@/components/modal/project/DeleteCampaign";
 import PauseProjectModal from "@/components/modal/project/PauseProjectMoadal";
 import Link from "next/link";
+import ActionModal from "@/components/modal/project/ActionModal";
 
 interface ProjectTableProps {
     setIsOpen: React.Dispatch<React.SetStateAction<"item" | "cash" | undefined>>;
@@ -15,48 +16,41 @@ interface ProjectTableProps {
 
 type Project = {
     name: string;
-    totalFunded: string;
-    amountDisbursed: string;
-    amountSpent: string;
-    date: string;
+    emailAddress: string; // New field for email address
+    totalDonation: string; // New field for total donation
+    ngosOrCampaigns: string;
     status: "Ongoing" | "Ended" | "Active" | "Pause";
+    actions: string;
 };
 
 const projects: Project[] = [{
-    name: "Feed the Poor",
-    totalFunded: "$10,050,000",
-    amountDisbursed: "$10,050,000",
-    amountSpent: "$10,050,000",
-    date: "12 Dec, 2022",
-    status: "Ongoing"
+    name: "Hope Spring Initiative",
+   emailAddress: "example@gmail.com",
+    totalDonation: "$$10,050,000",
+    ngosOrCampaigns: "3/9",
+    status: "Ongoing",
+    actions: ""
 }, {
-    name: "Feed the Poor",
-    totalFunded: "$150,000",
-    amountDisbursed: "$150,000",
-    amountSpent: "$150,000",
-    date: "12 Dec, 2022",
-    status: "Ended"
+    name: "Jaime Fowler",
+   emailAddress: "example@gmail.com",
+    totalDonation: "$10,050,000",
+    ngosOrCampaigns: "3/9",
+    status: "Ongoing",
+    actions: ""
 }, {
-    name: "Feed the Poor",
-    totalFunded: "$10,050,000",
-    amountDisbursed: "$10,050,000",
-    amountSpent: "$10,050,000",
-    date: "12 Dec, 2022",
-    status: "Active"
+    name: "Hope Spring Initiative",
+    emailAddress: "example@gmail.com",
+     totalDonation: "$10,050,000",
+     ngosOrCampaigns: "3/9",
+     status: "Ongoing",
+     actions: ""
 }, {
-    name: "Feed the Poor",
-    totalFunded: "$150,000",
-    amountDisbursed: "$150,000",
-    amountSpent: "$150,000",
-    date: "12 Dec, 2022",
-    status: "Ended"
-}, {
-    name: "Feed the Poor",
-    totalFunded: "$10,050,000",
-    amountDisbursed: "$10,050,000",
-    amountSpent: "$10,050,000",
-    date: "12 Dec, 2022",
-    status: "Pause"
+    name: "Johnny Walker Inc",
+   emailAddress: "example@gmail.com",
+    totalDonation: "$10,050,000",
+    ngosOrCampaigns: "3/9",
+    status: "Ongoing",
+    actions: ""
 },];
 
 const statusClasses = {
@@ -72,45 +66,27 @@ const ProjectsTable = ({setIsOpen, isOpen}:ProjectTableProps) => {
     const [openArchive, setOpenArchive] = useState<string | undefined | boolean>(undefined);
     const [openCampaign, setOpenCampaign] = useState<string | undefined>(undefined);
     const [openPause, setOpenPause] = useState<string | undefined>(undefined);
+    const [isModalOpen, setModalOpen] = React.useState(false);
 
 
-    return (<div className=" bg-white rounded-lg shadow-md">
-        {isOpen === "cash" && <CashProjectForm
-            isOpen={isOpen}
-            onClose={() => setIsOpen(undefined)}
-        />}
-        {isOpen === "item" && <ItemProjectForm
-            isOpen={isOpen}
-            onClose={() => setIsOpen(undefined)}
-        />}
 
-        {
-            openArchive && (
-                <ArchiveProjectModal open={openArchive} project_name={openCampaign} onClose={()=>{
-                    setOpenArchive(undefined)
-                }}/>
-            )
-        }
+    const handleOpenModal = () => {
+        // Switch to the "Pending Approval" tab
+         setModalOpen(true); // Optionally open a modal if needed
+       };
+       
+     
+       const handleCloseModal = () => {
+         setModalOpen(false);
+       };
+   
 
-        {
-            openCampaign && (
-                <DeleteCampaignModal project_name={openCampaign} onClose={()=>{
-                    setOpenCampaign(undefined)
-                }}/>
-            )
-        }
-
-
-        {
-            openPause && (
-                <PauseProjectModal open={openPause} project_name={openPause} onClose={()=>{
-                    setOpenPause(undefined)
-                }}/>
-            )
-        }
+    return (
+    <div className=" bg-white rounded-lg shadow-md">
+   
 
             <div className="px-4 flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">Projects</h2>
+                <h2 className="text-xl font-semibold">Donor</h2>
                 <div>
                     <label className="mr-2 text-sm font-medium">Filter by:</label>
                     <Select className={'border-none'} size={'md'} variant={'outlined'} value={listFilterBy} onChange={(e) => {
@@ -143,35 +119,42 @@ const ProjectsTable = ({setIsOpen, isOpen}:ProjectTableProps) => {
                 </div>
             </div>
 
-            <table className="w-full text-left pt-4 border-collapse">
-                <thead className={'bg-[#F7F7F7] shadow-none border-none'}>
-                <tr className="bg-[#F7F7F7] shadow-none border-none ">
+            <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F]">
+            <thead className={" h-[59px] shadow-none border-none w-full"}>
+                <tr className="bg-[#F7F7F7] shadow-none border-none w-full ">
                     <th className="px-4 py-2 font-bold text-xs">Name</th>
-                    <th className="px-4 py-2 font-bold text-xs">Total Funded</th>
-                    <th className="px-4 py-2 font-bold text-xs">Amount Disbursed</th>
-                    <th className="px-4 py-2 font-bold text-xs">Amount Spent</th>
-                    <th className="px-4 py-2 font-bold text-xs">Date</th>
+                    <th className="px-12 py-2 font-bold text-xs">Email address</th>
+                    <th className="px-3 py-2 font-bold text-xs">Total Donation</th>
+                    <th className="px-4 py-2 font-bold text-xs">NGOs/Campaigns</th>
                     <th className="px-4 py-2 font-bold text-xs">Status</th>
+                    <th className="px-4 py-2 font-bold text-xs">Actions</th>
                     <th className="px-4 py-2 font-bold text-xs"></th>
                 </tr>
                 </thead>
                 <tbody>
                 {projects.map((project, index) => (<tr key={index}>
                         <td className="px-4 py-6 mt-8 text-xs ">{project.name}</td>
-                        <td className="px-4 py-6 mt-8 text-xs">{project.totalFunded}</td>
-                        <td className="px-4 py-6 mt-8 text-xs">{project.amountDisbursed}</td>
-                        <td className="px-4 py-6 mt-8 text-xs">{project.amountSpent}</td>
-                        <td className="px-4 py-6 mt-8 text-xs">{project.date}</td>
-                        <td className="px-4 py-6 mt-8 text-xs">
-                <span
+                        <td className="px-12 py-6 mt-8 text-xs">{project.emailAddress}</td>
+                        <td className="px-3 py-6 mt-8 text-xs">{project.totalDonation}</td>
+                        <td className="px-6 py-6 mt-8 text-xs">{project.ngosOrCampaigns}</td>
+                        <span
                     className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${statusClasses[project.status]}`}
                 >
                   {project.status}
                 </span>
+                        <td className="px-8 py-6 mt-8 text-xs">{project.actions}
+                        <button className="text-gray-800 hover:text-gray-700"
+                         onClick={handleOpenModal}
+                        >
+    &#x22EE; 
+  </button>
+                
+                        </td>
+                        <td className="px-4 py-6 mt-8 text-xs">
                         </td>
                         <td className="flex justify-between items-center px-4 py-6">
                             <div className={'flex items-center gap-4'}>
-                                <svg onClick={()=> {
+                                {/* <svg onClick={()=> {
                                     setOpenArchive(project.name)
                                 }}  className={'cursor-pointer'} width="16"
                                      height="16" viewBox="0 0 21 20" fill="none"
@@ -189,19 +172,21 @@ const ProjectsTable = ({setIsOpen, isOpen}:ProjectTableProps) => {
                                     <path
                                         d="M8.47506 0.666992C3.87506 0.666992 0.141724 4.40033 0.141724 9.00033C0.141724 13.6003 3.87506 17.3337 8.47506 17.3337C13.0751 17.3337 16.8084 13.6003 16.8084 9.00033C16.8084 4.40033 13.0834 0.666992 8.47506 0.666992ZM7.43339 11.5253C7.43339 11.9253 7.26672 12.0837 6.84172 12.0837H5.75839C5.33339 12.0837 5.16672 11.9253 5.16672 11.5253V6.47533C5.16672 6.07533 5.33339 5.91699 5.75839 5.91699H6.83339C7.25839 5.91699 7.42506 6.07533 7.42506 6.47533V11.5253H7.43339ZM11.8334 11.5253C11.8334 11.9253 11.6667 12.0837 11.2417 12.0837H10.1667C9.74172 12.0837 9.57506 11.9253 9.57506 11.5253V6.47533C9.57506 6.07533 9.74172 5.91699 10.1667 5.91699H11.2417C11.6667 5.91699 11.8334 6.07533 11.8334 6.47533V11.5253Z"
                                         fill="#646A86"/>
-                                </svg>
+                                </svg> */}
                             </div>
                             {/* 40:56 */}
                             <Link href={`/projects/${project.name}`}>
-                                <button className="text-[#17CE89] text-xs underline font-bold hover:underline">
+                                {/* <button className="text-[#17CE89] text-xs underline font-bold hover:underline">
                                     View
-                                </button>
+                                </button> */}
                             </Link>
                         </td>
                 </tr>))}
                 </tbody>
             </table>
-
+            {isModalOpen && (
+      <ActionModal onClose={handleCloseModal} />
+    )}
         <div className="px-4 py-4 flex justify-between items-center mt-4">
                 <div>
                     <label className="mr-2 text-sm font-medium">Items</label>
@@ -233,7 +218,10 @@ const ProjectsTable = ({setIsOpen, isOpen}:ProjectTableProps) => {
 
                 </div>
             </div>
-        </div>);
+        </div>
+     
+    );
+    
 };
 
 export default ProjectsTable;

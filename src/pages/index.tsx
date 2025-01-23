@@ -15,8 +15,8 @@ import ChartCardGrouped from "@/components/chart/dashboard/ChartCardGrouped";
 import axios from "axios";
 import Metrics from "@/components/content/dashboard/Metrics";
 import { Authenticated } from "@/lib/auth/withAuth";
-import { getProfile } from "@/redux/profile/profileSlice";
 import { useAppDispatch } from "@/hook/useReduxTypes";
+import * as XLSX from 'xlsx';
 
 import Input from "@/components/input";
 import Button from "@/components/button/Button";
@@ -28,7 +28,9 @@ import ExcelIcon from "@/components/icon/ExcelIcon";
 import Tabs from "@/components/content/project/table/Tabs";
 import ProjectsTable from "@/components/content/project/table/ProjectsTable";
 import ProjectsList from "@/components/content/project/table/ProjectTableMobile";
-import Organization from "@/components/content/organizations/table/OrganizationsTable"
+import Organization from "@/components/content/organizations/table/Active";
+import PendingApproval from "@/components/content/organizations/table/PendingApproval"
+import AddOrganizationForm from "@/components/modal/CreateNew";
 
 const MapComponent = dynamic(
   () => import("@/components/content/dashboard/MapComponent"),
@@ -37,22 +39,19 @@ const MapComponent = dynamic(
   }
 );
 
-const GlobeComponent = dynamic(
-  () => import("@/components/content/dashboard/GlobeComponent"),
-  {
-    ssr: false,
-  }
-);
-
-interface LargeScreenProps {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  search: string;
-  setSelectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+const downloadExcel = ()=>{
+    // const worksheet = XLSX.utils.json_to_sheet("");
 }
 
-function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
-  const smallScreen = useMediaQuery({ query: "(max-width: 1024px)" });
+interface Home {
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  search: string;
+  setSelectModalOpen : React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+function Home({ setSearch, search, setSelectModalOpen }: Home) {
+
+  const smallScreen = useMediaQuery({ query: "(max-width: 1024px)" });
   const [showMap, setShowMap] = useState(false);
 
   const [type, setType] = useState<string>("normal");
@@ -60,6 +59,7 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
   const [filterOption, setFilterOption] = useState<string>("24H");
   const [isOpen, setIsOpen] = useState<"item" | "cash" | undefined>(undefined);
   const [activeTab, setActiveTab] = React.useState(1);
+  const [isModalOpen, setModalOpen] = React.useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -86,6 +86,22 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
     );
     console.log("res:", res);
     setTopology(res?.data);
+  };
+
+
+  const tabItems = [
+    { name: "Active", value: 1 },
+    { name: "Pending Approval", value: 2 },
+  ];
+
+  const handleOpenModal = () => {
+   // Switch to the "Pending Approval" tab
+    setModalOpen(true); // Optionally open a modal if needed
+  };
+  
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -116,15 +132,17 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
 
           <div className={"flex gap-2"}>
             <Button
-              onClick={() => setSelectModalOpen(true)}
+               onClick={handleOpenModal}
               icon={<AddIcon />}
               text={"Create New"}
               variant={"contained"}
               color={"success"}
               className={"rounded-lg"}
             />
+            
+            
             <Button
-              onClick={() => setSelectModalOpen(true)}
+              onClick={downloadExcel}
               icon={<ExcelIcon />}
               text={"Export"}
               variant={"outlined"}
@@ -134,43 +152,27 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
           </div>
         </div>
 
-        {/* <div className={"hidden md:inline"}>
-          <Header
-            userName={"karlkeller"}
-            toggleMap={toggleMap}
-            showMap={showMap}
-            type={type}
-          />
-        </div> */}
-
-        {/* <KycCard /> */}
-
-        {/* <div className={""}> */}
-        {/*{showMap && type === "normal" && <div className={'mt-8 w-full h-screen '}><Map/></div>}*/}
-        {/* {showMap && type === "normal" && (
-            <div className={"mt-8 w-full h-screen "}>
-              <MapComponent topology={topology} />
-            </div>
-          )} */}
-
-        {/* {showMap && type !== "normal" && <GlobeComponent />} */}
-        {/* </div> */}
-
-        {/* {!showMap && <Metrics />} */}
-
-        <div className="mt-[32px] text-[18px] font-bold">
+        <div className="mt-[32px]">
           <Tabs
             setActiveTab={setActiveTab}
             activeTab={activeTab}
             tabItems={tabItems}
-          />
-          <div className={"hidden lg:inline"}>
+          />        
+          {/* <div className={"hidden lg:inline"}>
             <Organization setIsOpen={setIsOpen} isOpen={isOpen} />
           </div>
           <div className={"inline lg:hidden"}>
             <ProjectsList setIsOpen={setIsOpen} isOpen={isOpen} />
-          </div>
+          </div> */}
         </div>
+        <div className="mt-4">
+        {activeTab === 1 && (
+          <div>
+            <Organization setIsOpen={setIsOpen} isOpen={isOpen} />
+          </div>
+        )}
+        {activeTab === 2 && <PendingApproval setIsOpen={setIsOpen} isOpen={isOpen} />}
+      </div>
 
         {showMap && (
           <ChartCardGrouped
@@ -197,23 +199,25 @@ function Home({ setSearch, search, setSelectModalOpen }: LargeScreenProps) {
           {smallScreen && <DateMetricsCard />}
           {smallScreen && <VendorMetricsCard />}
         </div>
+        {isModalOpen && (
+        <AddOrganizationForm onClose={handleCloseModal} />
+      )}
       </DashboardLayout>
     </>
   );
 }
 
 const tabItems = [
-    {
-      name: "Active",
-      value: 1,
-    },
-  
-    {
-      name: "Pending approval",
-      value: 2,
-    },
+  {
+    name: "Active",
+    value: 1,
+  },
 
-  ];
+  {
+    name: "Pending approval",
+    value: 2,
+  },
+];
 
 Home.getLayout = (page: ReactNode) => {
   return <Authenticated>{page}</Authenticated>;

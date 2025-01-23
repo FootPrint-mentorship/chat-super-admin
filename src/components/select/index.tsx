@@ -23,9 +23,9 @@ type SelectProps = {
 const Select: React.FC<SelectProps> = ({
                                            options,
                                            value,
-                                           placeholder = 'Select an option',
+                                           placeholder = 'Today',
                                            variant = 'outlined',
-                                           size = 'md',
+                                           size = 'sm',
                                            disabled = false,
                                            fullWidth = false,
                                            onChange,
