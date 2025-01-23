@@ -131,7 +131,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         <div>
           <label className="mr-2 text-sm font-medium">Filter by:</label>
           <Select
-            className={"border-none"}
+            className={""}
             size={"md"}
             variant={"outlined"}
             value={listFilterBy}
@@ -165,9 +165,10 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </div>
       </div>
 
-      <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F]">
-        <thead className={"bg-[#F7F7F7] h-[59px] shadow-none border-none"}>
-          <tr className="bg-[#F7F7F7] shadow-none border-none ">
+     
+      <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
+          <thead className="h-[59px]">
+            <tr className="bg-[#F7F7F7]">
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Name
             </th>
@@ -193,7 +194,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
           {projects.map((project, index) => (
             <tr key={index}
             >
-              <td className="px-4 b] py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
+              <td className="px-4  py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
                 {project.name}
               </td>
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
@@ -205,7 +206,8 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.beneficiaries}
               </td>
-              <td className="px-4 py-6 mt-8 text-xs">
+            
+              <td> 
                 <span
                   className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
                     project.status === "Active" ? `bg-[#D1F7C4]` : `black`
