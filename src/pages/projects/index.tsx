@@ -7,30 +7,42 @@ import LargeScreen from "@/components/content/project/header/LargeScreen";
 import MobileScreen from "@/components/content/project/header/MobileScreen";
 import Tabs from "@/components/content/project/table/Tabs";
 import { Authenticated } from "@/lib/auth/withAuth";
+import DonorsLayout from "../donors";
+import WithdrawalRequest from "@/components/modal/project/WithdrawalRequest";
 
 function Index() {
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState<"item" | "cash" | undefined>(undefined);
-  const [activeTab, setActiveTab] = React.useState(1);
+  const [activeTab, setActiveTab] = useState(1);
   const [isSelectModalOpen, setSelectModalOpen] = useState(false);
 
+  const tabItems = [
+    {
+      name: "All Donors",
+      value: 1,
+    },
+    {
+      name: "Withdrawal Requests",
+      value: 2,
+    },
+  ];
+
   return (
-    <DashboardLayout title={"Dashboard"} header={"NGO"}>
-      <div className={"flex flex-col gap-8"}>
+    <DashboardLayout title="Donor" header="NGO">
+      <div className="flex flex-col gap-8">
+        {/* Modal */}
         <SelectProjectTypeModal
           isOpen={isSelectModalOpen}
           onClose={() => setSelectModalOpen(false)}
           setIsOpen={setIsOpen}
         />
 
-        {/* Header Start */}
-
+        {/* Header */}
         <LargeScreen
           setSelectModalOpen={setSelectModalOpen}
           search={search}
           setSearch={setSearch}
         />
-
         <MobileScreen
           search={search}
           setSearch={setSearch}
@@ -38,45 +50,36 @@ function Index() {
           isOpen={isOpen}
         />
 
-        {/* End of Header */}
-
-        {/* Table Start */}
-
+        {/* Tabs and Table */}
         <div>
           <Tabs
             setActiveTab={setActiveTab}
             activeTab={activeTab}
             tabItems={tabItems}
           />
-          <div className={"hidden lg:inline"}>
-            <ProjectsTable setIsOpen={setIsOpen} isOpen={isOpen} />
-          </div>
-          <div className={"inline lg:hidden"}>
-            <ProjectsList setIsOpen={setIsOpen} isOpen={isOpen} />
-          </div>
-        </div>
 
-        {/* Table End */}
+          {/* Conditional Rendering Based on Tab */}
+          {activeTab === 1 && (
+            <div>
+              {/* Organization component goes here */}
+              <DonorsLayout />
+            </div>
+          )}
+
+{activeTab === 2 && (
+            <div>
+              {/* Organization component goes here */}
+              <WithdrawalRequest onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
+            </div>
+          )}
+         
+        </div>
       </div>
     </DashboardLayout>
   );
 }
-const tabItems = [
-  {
-    name: "All Donors",
-    value: 1,
-  },
-
-  {
-    name: "Withdrawal Requests",
-    value: 2,
-  },
-
-  // {
-  //   name: "Archived Projects222A",
-  //   value: 2,
-  // },
-];
 
 Index.getLayout = (page: ReactNode) => {
   return <Authenticated>{page}</Authenticated>;

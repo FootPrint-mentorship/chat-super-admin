@@ -132,7 +132,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         <div>
           <label className="mr-2 text-sm font-medium">Filter by:</label>
           <Select
-            className={"border-none"}
+            className={""}
             size={"md"}
             variant={"outlined"}
             value={listFilterBy}
@@ -166,9 +166,10 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </div>
       </div>
 
-      <table className="w-full text-left text-[16px] font-medium pt-4 border-collapse font-sans text-[#25396F] ">
-        <thead className={"bg-[#F7F7F7] w-full h-[59px] shadow-none border-none"}>
-          <tr className="bg-[#F7F7F7] shadow-none border-none ">
+      
+      <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
+          <thead className="h-[59px]">
+            <tr className="bg-[#F7F7F7]">
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Organization Name
             </th>
@@ -184,6 +185,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               KYC Status
             </th>
+            <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]"></th>
            
           </tr>
         </thead>
@@ -208,7 +210,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.LastName}
               </td>
-              <td className="px-4 py-6 mt-8 text-xs">
+              {/* <td className="px-4 py-6 mt-8 text-xs"> */}
                 <span
                   className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
                     project.KYCstatus === "successful" ? `bg-[#D1F7C4]` : `black`
@@ -216,7 +218,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
                 >
                   {project.KYCstatus}
                 </span>
-              </td>
+              {/* </td> */}
 
  <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
               <button className="p-2"

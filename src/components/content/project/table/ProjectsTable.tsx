@@ -81,7 +81,8 @@ const ProjectsTable = ({setIsOpen, isOpen}:ProjectTableProps) => {
        };
    
 
-    return (<div className=" bg-white rounded-lg shadow-md">
+    return (
+    <div className=" bg-white rounded-lg shadow-md">
    
 
             <div className="px-4 flex justify-between items-center mb-4">
