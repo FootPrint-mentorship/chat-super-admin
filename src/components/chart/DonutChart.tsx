@@ -18,7 +18,7 @@ interface DonutChartProps {
 
 const DonutChart: React.FC<DonutChartProps> = ({ title, data }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-80">
+    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
       <h3 className="text-center text-lg font-medium text-gray-700 mb-4">
         {title}
       </h3>

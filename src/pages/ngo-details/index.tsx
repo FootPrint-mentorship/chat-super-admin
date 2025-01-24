@@ -14,6 +14,7 @@ import HorizontalBarChart from "@/components/chart/HorizontalBarChart";
 import BarChart from "@/components/chart/BarChart";
 import VendorTransactionChart from "@/components/chart/VendorTransactionChart";
 import FoundationCard from "@/components/ngocontacttext/NgoTextCard";
+import { Assets } from "@/util/Assets";
 
 function Index() {
   const [search, setSearch] = React.useState("");
@@ -97,7 +98,7 @@ function Index() {
           </div>
         </div>
         <NgoPayments />
-        <div className=" flex gap-5">
+        <div className=" flex justify-center gap-5">
           {/* chat section */}
           <div>
             <div className="flex gap-5">
@@ -131,7 +132,7 @@ function Index() {
           <div className=" ">
             <FoundationCard
               title="Blue Orange Foundation"
-              logo="/path-to-logo.png" // Replace with your logo path
+              logo=""
               about="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget molestie nisl commodo nulla. Diam eget massa magna diam adipiscing porttitor nullam volutpat egestas. Enim in sapien auctor a amet. Scelerisque vitae porta dictum egestas gravida elementum arcu."
               phone="+234 813 220 5304"
               email="example@gmail.com"
