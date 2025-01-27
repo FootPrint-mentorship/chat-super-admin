@@ -4,13 +4,16 @@ import DashboardLayout from "@/components/layout/dashboardLayout";
 import { Authenticated } from "@/lib/auth/withAuth";
 import Tabs from "@/components/settingscomponent/Tabs";
 import PasswordTabs from "@/components/settingscomponent/PasswordTabs";
+import Password from "@/components/settingscomponent/Password";
 
-const index = () => {
+const Index = () => {
+  const [activePasswordTab, setActivePasswordTab] = useState("Password");
   const handleTabChange = (selectedTab: string) => {
     console.log("Selected Tab:", selectedTab);
   };
   const handlePasswordTabChange = (selectedTab: string) => {
     console.log("Active Tab:", selectedTab);
+    setActivePasswordTab(selectedTab);
   };
 
   return (
@@ -25,17 +28,23 @@ const index = () => {
           </div>
         </div>
         {/* passoword or 2FA */}
-        <div className=" bg-gray-50  p-6">
-          <div className="w-full max-w-md">
-            <PasswordTabs
-              tabs={["Password", "2-Factor Authentication"]}
-              onTabChange={handlePasswordTabChange}
-            />
-            {/* You can render tab-specific content below */}
-            <div className="mt-6">
-              <p className="text-gray-600 text-sm">
-                Content for the selected tab will go here.
-              </p>
+        <div className="p-6 rounded-lg shadow-md border max-w-3xl">
+          <div className=" bg-gray-50  p-6">
+            <div className="w-full max-w-md">
+              <PasswordTabs
+                tabs={["Password", "2-Factor Authentication"]}
+                onTabChange={handlePasswordTabChange}
+              />
+              {/* Active tab*/}
+              {activePasswordTab === "Password" ? (
+                <div>
+                  <Password />
+                </div>
+              ) : (
+                <div>
+                  <p>2 FAC Authentication</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -45,8 +54,8 @@ const index = () => {
     </DashboardLayout>
   );
 };
-index.getLayout = (page: ReactNode) => {
+Index.getLayout = (page: ReactNode) => {
   return <Authenticated>{page}</Authenticated>;
 };
 
-export default index;
+export default Index;

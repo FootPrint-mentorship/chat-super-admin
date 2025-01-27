@@ -93,8 +93,8 @@ function Sidebar() {
     },
     {
       name: "Campaigns",
-      link: "/account",
-      active: router.pathname.includes("/account"),
+      link: "",
+      active: router.pathname.includes(""),
       icon: (
         <svg
           className="w-4 h-4 "
@@ -113,8 +113,9 @@ function Sidebar() {
     },
     {
       name: "Settings",
-      link: "/marketplace",
-      active: router.pathname.includes("/marketplace"),
+      // link: "/marketplace",
+      link: "/account-settings",
+      active: router.pathname.includes("/account-settings"),
       icon: (
         <svg
           className="w-6 h-6"

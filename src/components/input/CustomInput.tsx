@@ -1,3 +1,4 @@
+// src/components/input/CustomInput.tsx
 "use client";
 
 import React from "react";
@@ -7,22 +8,33 @@ interface CustomInputProps {
   label: string;
   icon: React.ReactNode;
   onClick: () => void;
+  rightIcon?: React.ReactNode;
+  placeholder?: string;
+  type?: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ label, icon, onClick }) => {
+const CustomInput: React.FC<CustomInputProps> = ({
+  label,
+  icon,
+  onClick,
+  rightIcon,
+  placeholder,
+  type = "text",
+}) => {
   return (
-    <button
-      className="flex items-center justify-between bg-white rounded-lg shadow-lg p-4 w-full hover:shadow-xl transition-all"
-      onClick={onClick}
-    >
-      <div className="flex items-center space-x-2">
-        <span className="text-xl">{icon}</span>
-        <span className="text-gray-600 font-medium">{label}</span>
-      </div>
-      <span className="text-gray-500">
-        <GrNext />
-      </span>
-    </button>
+    <div className="relative">
+      <button
+        className="flex items-center justify-between bg-gray-100 rounded-lg  p-4 w-full hover:shadow-xl transition-all"
+        onClick={onClick}
+        type="button"
+      >
+        <div className="flex items-center space-x-2">
+          <span className="text-xl text-gray-400">{icon}</span>
+          <span className="text-gray-400 font-sm">{label}</span>
+        </div>
+        <span className="text-gray-400">{rightIcon}</span>
+      </button>
+    </div>
   );
 };
 
