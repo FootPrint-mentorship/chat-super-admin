@@ -7,8 +7,9 @@ import LargeScreen from "@/components/content/project/header/LargeScreen";
 import MobileScreen from "@/components/content/project/header/MobileScreen";
 import Tabs from "@/components/content/project/table/Tabs";
 import { Authenticated } from "@/lib/auth/withAuth";
-import DonorsLayout from "../donors";
+
 import WithdrawalRequest from "@/components/modal/project/WithdrawalRequest";
+import AllDonors from "@/components/modal/project/AllDonors";
 
 function Index() {
   const [search, setSearch] = useState("");
@@ -62,7 +63,11 @@ function Index() {
           {activeTab === 1 && (
             <div>
               {/* Organization component goes here */}
-              <DonorsLayout />
+              <AllDonors setSearch={function (value: React.SetStateAction<string>): void {
+                throw new Error("Function not implemented.");
+              } } search={""} setSelectModalOpen={function (value: React.SetStateAction<boolean>): void {
+                throw new Error("Function not implemented.");
+              } } />
             </div>
           )}
 
