@@ -39,7 +39,7 @@ const AddVendorForm: React.FC<AddVendorFormProps> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className="relative bg-white shadow-md rounded-lg p-8  h-[633px] w-[688px]">
+      <div className="relative bg-white shadow-md rounded-lg p-8  h-[530px] w-[688px]">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
@@ -150,7 +150,7 @@ const AddVendorForm: React.FC<AddVendorFormProps> = ({ onClose }) => {
           <div className="sm:col-span-2">
             <button
               type="submit"
-              className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-[113px] bg-green-500 text-white font-bold py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               Save
             </button>
