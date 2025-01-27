@@ -73,8 +73,8 @@ function Sidebar() {
     },
     {
       name: "Beneficiaries",
-      link: "/vendors",
-      active: router.pathname.includes("/vendors"),
+      link: "/benefits",
+      active: router.pathname.includes("/benefits"),
       icon: (
         <svg
           className="w-6 h-6 "
