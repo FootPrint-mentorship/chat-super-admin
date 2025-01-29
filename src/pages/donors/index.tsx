@@ -1,4 +1,3 @@
-
 import React, { ReactNode, useState } from "react";
 import DashboardLayout from "@/components/layout/dashboardLayout";
 import Select from "@/components/select";
@@ -64,7 +63,7 @@ const DonorsLayout = () => {
   const [isAddVendorModalOpen, setAddVendorModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [listFilter, setListFilter] = useState<string | undefined>("10");
-  
+
   const handleAddVendorModal = () => setAddVendorModalOpen(true);
   const handleCloseAddVendorModal = () => setAddVendorModalOpen(false);
 
@@ -77,13 +76,15 @@ const DonorsLayout = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white shadow-md">
       <DashboardLayout title="Vendors" header="NGO">
         <div className="flex flex-col gap-8">
           <div className={"hidden lg:flex items-center justify-between w-full"}>
             <div className={"flex gap-2 w-[50%]"}>
               <Input
-                className={"border-[#707FA3] rounded-lg text-[#707FA3] font-[400]"}
+                className={
+                  "border-[#707FA3] rounded-lg text-[#707FA3] font-[400]"
+                }
                 icon={<SearchIcon />}
                 placeholder={"Search organizations..."}
                 value={search}
@@ -123,49 +124,51 @@ const DonorsLayout = () => {
             <div className="px-4 flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Vendors</h2>
               <div>
-        <label className="mr-2 text-sm font-medium">Filter by:</label>
-        <Select
-        className={""}
-        size={"sm"}
-        variant={"outlined"}
-        value={listFilter}
-        onChange={(e) => {
-          setListFilter(e.target.value);
-        }}
-        options={[
-          {
-            value: "today",
-            label: "Today",
-          },
-          {
-            value: "yesterday",
-            label: "Yesterday",
-          },
+                <label className="mr-2 text-sm font-medium">Filter by:</label>
+                <Select
+                  className={""}
+                  size={"sm"}
+                  variant={"outlined"}
+                  value={listFilter}
+                  onChange={(value: string | number) => setListFilter(String(value))}
+                  options={[
+                    {
+                      value: "today",
+                      label: "Today",
+                    },
+                    {
+                      value: "yesterday",
+                      label: "Yesterday",
+                    },
 
-          {
-            value: "Last 7 days",
-            label: "Last 7 days",
-          },
-          {
-            value: "Last 30 day",
-            label: "Last 30 day",
-          },
-          {
-            value: "Last 90 days",
-            label: "Last 90 days",
-          },
-        ]}
-      />
-      </div>
+                    {
+                      value: "Last 7 days",
+                      label: "Last 7 days",
+                    },
+                    {
+                      value: "Last 30 day",
+                      label: "Last 30 day",
+                    },
+                    {
+                      value: "Last 90 days",
+                      label: "Last 90 days",
+                    },
+                  ]}
+                />
+              </div>
             </div>
 
             <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
               <thead className="h-[59px]">
                 <tr className="bg-[#F7F7F7]">
                   <th className="px-4 py-2 font-bold text-xs">Name</th>
-                  <th className="px-12 py-2 font-bold text-xs">Email-Address</th>
+                  <th className="px-12 py-2 font-bold text-xs">
+                    Email-Address
+                  </th>
                   <th className="px-4 py-2 font-bold text-xs">Amount sold</th>
-                  <th className="px-8 py-2 font-bold text-xs">NGOs/Campaigns</th>
+                  <th className="px-8 py-2 font-bold text-xs">
+                    NGOs/Campaigns
+                  </th>
                   <th className="px-4 py-2 font-bold text-xs">Status</th>
                   <th className="px-4 py-2 font-bold text-xs">Actions</th>
                 </tr>
@@ -174,12 +177,18 @@ const DonorsLayout = () => {
                 {projects.map((project, index) => (
                   <tr key={index} className=" border-gray-200">
                     <td className="px-4 py-6 text-xs">{project.name}</td>
-                    <td className="px-12 py-6 text-xs">{project.emailaddress}</td>
+                    <td className="px-12 py-6 text-xs">
+                      {project.emailaddress}
+                    </td>
                     <td className="px-4 py-6 text-xs">{project.amountsold}</td>
-                    <td className="px-8 py-6 text-xs">{project.ngoscampaign}</td>
+                    <td className="px-8 py-6 text-xs">
+                      {project.ngoscampaign}
+                    </td>
                     <td>
                       <span
-                        className={`text-xs font-medium px-2 py-1 rounded-lg ${typeClasses[project.status]}`}
+                        className={`text-xs font-medium px-2 py-1 rounded-lg ${
+                          typeClasses[project.status]
+                        }`}
                       >
                         {project.status}
                       </span>
@@ -200,9 +209,15 @@ const DonorsLayout = () => {
                             ✕
                           </button>
                           <ul className="py-2 text-gray-700 text-sm">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">View</li>
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Activate</li>
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Deactivate</li>
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                              View
+                            </li>
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                              Activate
+                            </li>
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                              Deactivate
+                            </li>
                           </ul>
                         </div>
                       )}
@@ -213,7 +228,9 @@ const DonorsLayout = () => {
             </table>
           </div>
         </div>
-        {isAddVendorModalOpen && <AddVendorForm onClose={handleCloseAddVendorModal} />}
+        {isAddVendorModalOpen && (
+          <AddVendorForm onClose={handleCloseAddVendorModal} />
+        )}
       </DashboardLayout>
     </div>
   );
