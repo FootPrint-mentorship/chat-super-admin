@@ -72,62 +72,9 @@ const projects: Project[] = [
 
 
 
-const DashboardStats = () => {
-  // const stats = [
-  //   {
-  //     title: "Total Beneficiaries",
-  //     value: "842,000",
-  //     icon: "👥",
-  //     bgColor: "white",
-  //     textColor: "text-blue-600",
-  //   },
-  //   {
-  //     title: "Total Received",
-  //     value: "₦500,000,000.00",
-  //     icon: "💰",
-  //     bgColor: "white",
-  //     textColor: "text-green-600",
-  //   },
-  //   {
-  //     title: "Total Spent",
-  //     value: "₦412,000,000.00",
-  //     icon: "📤",
-  //     bgColor: "white",
-  //     textColor: "text-red-600",
-  //   },
-  //   {
-  //     title: "Total Balance",
-  //     value: "₦88,000,000.00",
-  //     icon: "💵",
-  //     bgColor: "white",
-  //     textColor: "text-purple-600",
-  //   },
-  // ];
-   
- 
+// const DashboardStats = () => {
 
-
-  // return (
-  //   // <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-4">
-  //   //   {stats.map((stat, index) => (
-  //   //     <div
-  //   //       key={index}
-  //   //       className={`flex items-center p-4 rounded-lg shadow-md ${stat.bgColor}`}
-  //   //     >
-  //   //       <div
-  //   //         className={`flex items-center justify-center w-12 h-12 text-2xl rounded-full ${stat.textColor} bg-opacity-20`}
-  //   //       >
-  //   //         {stat.icon}
-  //   //       </div>
-  //   //       <div className="ml-4">
-  //   //         <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-  //   //         <p className="text-xl font-bold text-gray-800">{stat.value}</p>
-  //   //       </div>
-  //   //     </div>
-  //   //   ))}
-  //   // </div>
-  // );
-};
+// };
 
 const typeClasses: Record<string, string> = {
   Verified: "bg-[#E7EBF3] text-red-700 rounded-full text-xs font-medium",

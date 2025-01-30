@@ -13,7 +13,7 @@ import Card from "@/components/content/project/card/Card";
 import { useRouter } from "next/router";
 
 type Project = {
-  id:string;
+  id: string;
   name: string;
   tag: string;
   total: string;
@@ -24,47 +24,29 @@ type Project = {
  
 const projects: Project[] = [
   {
-  id: "1",
-    name: "Feed the Poor",
+    id: "1",
+    name: "John Example",
     tag: "Cash",
-    total: "#5,0000",
-    created: "August 2, 2013",
+    total: "+234705555555",
+    created: "example@gmail.com",
     status: "Ongoing",
     avatar: "",
   },
   {
     id: "2",
-    name: "Feed the Poor",
+    name: "John Example",
     tag: "Item",
-    total: "#5,0000",
-    created: "August 2, 2013",
+    total: "+234705555555",
+    created: "example@gmail.com",
     status: "Ended",
     avatar: "",
   },
-  {
-    id: "3",
-      name: "Feed the Poor",
-      tag: "Cash",
-      total: "#5,0000",
-      created: "August 2, 2013",
-      status: "Ongoing",
-      avatar: "",
-    },
-    {
-      id: "4",
-      name: "Feed the Poor",
-      tag: "Item",
-      total: "#5,0000",
-      created: "August 2, 2013",
-      status: "Ended",
-      avatar: "",
-    },
 ];
 
 const typeClasses: Record<string, string> = {
   Ended: "bg-green-100 text-green-700 rounded-full px-2 py-1 text-xs",
   Ongoing: "bg-red-100 text-red-700 rounded-full px-2 py-1 text-xs",
-  Cash: "bg-green-100 text-blue-700 rounded-full px-2 py-1 text-xs",
+  Cash: "bg-red-100 text-red-700 rounded-full px-2 py-1 text-xs",
   Item: "bg-red-100 text-red-700 rounded-full px-2 py-1 text-xs",
 };
 
@@ -94,11 +76,11 @@ const DashboardStats = () => {
   ];
 
   return (
-    <div className="flex items-start gap-6 p-6 ">
+    <div className="flex items-start gap-6 p-6">
       {stats.map((stat, index) => (
         <div
           key={index}
-          className={`flex items-center p-4 w-[260px] gap-[16px] h-[120px] rounded-lg shadow-md bg-white ${stat.bgColor}`}
+          className={`flex items-center p-4 w-[260px] gap-[16px] h-[120px] rounded-lg shadow-md ${stat.bgColor}`}
         >
           <div className={`flex items-center justify-center gap-2 h-12 text-2xl rounded-full ${stat.textColor} bg-opacity-20`}>
             {stat.icon}
@@ -147,23 +129,19 @@ const PersonalDetailsCards = () => {
 
   return (
     <div className="">
-      <DashboardLayout title="Beneficiary - Profile" header="NGO">
+      <DashboardLayout title="Project - Vaccine for all Beneficiary - Profile" header="NGO">
         <GoBackButton />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="col-span-2 gap-[31px]">
             <DashboardStats />
 
             <div className="flex justify-start gap-[31px] items-center my-4">
-            <Input
-                className={
-                  "border-[#707FA3] rounded-lg text-[#707FA3] font-[400]"
-                }
-                icon={<SearchIcon />}
-                placeholder={"Search organizations..."}
+              <Input
+                className="w-1/3"
+                placeholder="Search organizations..."
                 value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
+                icon={<SearchIcon />}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <Button
                 size="md"
@@ -174,15 +152,11 @@ const PersonalDetailsCards = () => {
                 icon={<Filter />}
               />
             </div>
-{/* <div className="p-4"> */}
+
             <div className="px-4 flex justify-between items-center mb-4 bg-white p-2">
               <h2 className="text-xl font-semibold">Projects</h2>
               <div>
-            
-            </div>
-              <div>
                 <label className="mr-2 text-sm font-medium">Filter by:</label>
-              {/* <div className="bg-white p-8"></div> */}
                 <Select
                   size="sm"
                   variant="outlined"
@@ -199,13 +173,12 @@ const PersonalDetailsCards = () => {
               </div>
             </div>
 
-            <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
+            <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F] mt-4 bg-white">
               <thead className="h-[59px]">
                 <tr className="bg-[#F7F7F7]">
                   <th className="px-4 py-2">Name</th>
-                  
                   <th className="px-4 py-2">Tag</th>
-                  <th className="px-4  py-2">Total</th>
+                  <th className="px-4 py-2">Total</th>
                   <th className="px-4 py-2">Created</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2"></th>
@@ -213,11 +186,9 @@ const PersonalDetailsCards = () => {
               </thead>
               <tbody>
                 {projects.map((project) => (
-                  <tr key={project.id} className="border-t bg-white">
-                    <td className="px-4 py-4  flex items-center ">{project.name}</td>
-                    <td className="px-4 py-2">
-                    <span className={typeClasses[project.tag]}>{project.tag}</span>
-                    </td>
+                  <tr key={project.id} className="border-t">
+                    <td className="px-4 py-2 flex items-center">{project.name}</td>
+                    <td className="px-4 py-2">{project.tag}</td>
                     <td className="px-4 py-2">{project.total}</td>
                     <td className="px-4 py-2">{project.created}</td>
                     <td className="px-4 py-2">
