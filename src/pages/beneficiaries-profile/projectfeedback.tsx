@@ -69,12 +69,12 @@ const ProjectFeedback = () => {
       <div className="bg-white rounded-lg shadow-md">
       <div className="px-4 flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Project Feedback</h2>
-              <div>
+              {/* <div>
             
-              </div>
+              </div> */}
             </div>
 
-        <div className="px-4 flex border-b">
+        <div className="px-8 flex border-b">
           {tabItems.map((tab) => (
             <button
               key={tab.value}
