@@ -11,6 +11,7 @@ interface CustomInputProps {
   rightIcon?: React.ReactNode;
   placeholder?: string;
   type?: string;
+  name: string;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -20,6 +21,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   rightIcon,
   placeholder,
   type = "text",
+  name,
 }) => {
   return (
     <div className="relative">

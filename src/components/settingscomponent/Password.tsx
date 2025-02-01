@@ -17,7 +17,7 @@ const Password = () => {
       <form>
         <div className="mt-3">
           <CustomInput
-            // name="password"
+            name="password"
             // value={values.password}
             label="Enter old Password"
             icon={<IoIosLock />}
@@ -43,7 +43,7 @@ const Password = () => {
         {/* new password */}
         <div className="mt-3">
           <CustomInput
-            // name="password"
+            name="password"
             // value={values.password}
             label="Enter new Password"
             icon={<IoIosLock />}
@@ -69,7 +69,7 @@ const Password = () => {
         {/* confirm password */}
         <div className="mt-3">
           <CustomInput
-            // name="password"
+            name="password"
             // value={values.password}
             label="Confirm Password"
             icon={<IoIosLock />}
