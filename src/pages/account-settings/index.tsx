@@ -6,9 +6,11 @@ import Tabs from "@/components/settingscomponent/Tabs";
 import PasswordTabs from "@/components/settingscomponent/PasswordTabs";
 import Password from "@/components/settingscomponent/Password";
 import TwoFactorAuth from "@/components/settingscomponent/TwoFactorAut";
+import Modal from "../../components/common/Modal";
 
 const Index = () => {
   const [activePasswordTab, setActivePasswordTab] = useState("Password");
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const handleTabChange = (selectedTab: string) => {
     console.log("Selected Tab:", selectedTab);
   };
@@ -52,6 +54,9 @@ const Index = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)}>
+        <div>code here</div>
+      </Modal>}
 
       {/*password  */}
     </DashboardLayout>
