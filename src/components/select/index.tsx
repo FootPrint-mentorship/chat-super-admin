@@ -52,7 +52,7 @@ const Select: React.FC<SelectProps> = ({
     };
 
     const variantClasses = {
-        outlined: `${border ? border : "border"} border-primaryTextColor bg-white focus:ring-2 focus:ring-blue-500`,
+        outlined: `${border ? border : "border"} border-primaryTextColor bg-white `,
         filled: 'bg-gray-100 border border-transparent focus:ring-2 focus:ring-blue-500',
     };
 

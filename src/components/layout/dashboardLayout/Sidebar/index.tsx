@@ -73,8 +73,8 @@ function Sidebar() {
     },
     {
       name: "Beneficiaries",
-      link: "/vendors",
-      active: router.pathname.includes("/vendors"),
+      link: "/benefits",
+      active: router.pathname.includes("/benefits"),
       icon: (
         <svg
           className="w-6 h-6 "
@@ -93,8 +93,8 @@ function Sidebar() {
     },
     {
       name: "Campaigns",
-      link: "",
-      active: router.pathname.includes(""),
+      link: "/campaigns",
+      active: router.pathname.includes("/campaigns"),
       icon: (
         <svg
           className="w-4 h-4 "
@@ -226,11 +226,10 @@ function Sidebar() {
           <li key={item.name}>
             <Link href={item.link}>
               <div
-                className={`p-3 flex items-center gap-2 rounded-[10px] cursor-pointer text-[18px] font-medium text-center font-sans ${
-                  item.active
+                className={`p-3 flex items-center gap-2 rounded-[10px] cursor-pointer text-[18px] font-medium text-center font-sans ${item.active
                     ? "bg-secondaryBgColor text-primaryButtonTextColor font-semibold italic"
                     : "text-primaryTextColor hover:text-secondaryBgColor hover:bg-primaryHover"
-                }`}
+                  }`}
               >
                 {item?.icon} {item?.name}
               </div>
@@ -245,11 +244,10 @@ function Sidebar() {
           <li key={item.name}>
             <Link href={item.link}>
               <div
-                className={`p-2 flex items-center gap-2 rounded-md cursor-pointer text-xs ${
-                  item.active
+                className={`p-2 flex items-center gap-2 rounded-md cursor-pointer text-xs ${item.active
                     ? "bg-red-700 text-primaryButtonTextColor font-semibold"
                     : "text-primaryTextColor hover:text-secondaryBgColor hover:bg-primaryHover"
-                }`}
+                  }`}
               >
                 {item?.icon} {item?.name}
               </div>
