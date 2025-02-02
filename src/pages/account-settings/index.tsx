@@ -6,6 +6,7 @@ import Tabs from "@/components/settingscomponent/Tabs";
 import PasswordTabs from "@/components/settingscomponent/PasswordTabs";
 import Password from "@/components/settingscomponent/Password";
 import TwoFactorAuth from "@/components/settingscomponent/TwoFactorAut";
+import GoogleAuthenticatorSetup from "@/components/settingscomponent/GoogleAuthSetup";
 
 const Index = () => {
   const [activePasswordTab, setActivePasswordTab] = useState("Password");
@@ -50,6 +51,9 @@ const Index = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className="mt-10">
+          <GoogleAuthenticatorSetup />
         </div>
       </div>
 

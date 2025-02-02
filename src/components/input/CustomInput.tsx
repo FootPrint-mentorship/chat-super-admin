@@ -1,4 +1,3 @@
-// src/components/input/CustomInput.tsx
 "use client";
 
 import React from "react";
@@ -12,6 +11,7 @@ interface CustomInputProps {
   placeholder?: string;
   type?: string;
   name: string;
+  className?: string;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -22,6 +22,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
   type = "text",
   name,
+  className,
 }) => {
   return (
     <div className="relative">
