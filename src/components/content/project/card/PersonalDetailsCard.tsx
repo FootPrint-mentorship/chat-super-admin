@@ -22,9 +22,9 @@ const PersonalDetailsCard: React.FC<PersonalDetails> = ({   imageUrl,
                                                         }) => {
     return (
         <div className=" bg-white p-6 rounded-lg shadow-md w-[392px] h-[615px]">
+                <h2 className="text-lg text-center font-semibold text-primary mb-4">Personal Details</h2>
             <div className={'border border-secondaryBgColor rounded-md p-6'}>
 
-                <h2 className="text-lg text-center font-semibold text-primary mb-4">Personal Details</h2>
                 <div className="flex justify-center mb-6">
                     <img
                         src={imageUrl}
