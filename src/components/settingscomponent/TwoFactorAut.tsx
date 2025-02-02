@@ -17,7 +17,7 @@ export default function TwoFactorAuth() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 space-y-4">
+    <div className="max-w-full mx-auto pt-8 space-y-4">
       <Card className="border border-green-300">
         <CardContent className="p-4 flex flex-col space-y-2">
           <div className="flex justify-between items-center">
@@ -45,7 +45,11 @@ export default function TwoFactorAuth() {
                   onClick={handleCopy}
                   className="text-blue-500 hover:text-blue-700"
                 >
-                  {copied ? <Check size={16} /> : <Copy size={16} />}
+                  {copied ? (
+                    <Check size={16} />
+                  ) : (
+                    <Copy size={16} className=" " />
+                  )}
                 </button>
               </p>
             </div>
@@ -65,7 +69,7 @@ export default function TwoFactorAuth() {
           </div>
           {smsEnabled && (
             <div className="mt-2 text-sm text-gray-700 flex">
-              <p className="flex items-center gap-2 text-green-600">
+              <p className="flex  gap-2 text-green-600">
                 <Check size={16} /> Added July 5, 2021
               </p>
               <p>

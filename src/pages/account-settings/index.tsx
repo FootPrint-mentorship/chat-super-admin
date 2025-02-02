@@ -29,7 +29,7 @@ const Index = () => {
           </div>
         </div>
         {/* passoword or 2FA */}
-        <div className="p-6 rounded-lg shadow-md border max-w-3xl">
+        <div className="p-6 rounded-lg shadow-md border max-w-2xl">
           <div className=" bg-gray-50  p-6">
             <div className="w-full max-w-md">
               <PasswordTabs
