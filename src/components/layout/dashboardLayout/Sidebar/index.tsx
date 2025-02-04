@@ -13,8 +13,8 @@ function Sidebar() {
   const menuItems = [
     {
       name: "NGOs",
-      link: "/",
-      active: router.pathname === "/",
+      link: "/ngos",
+      active: router.pathname.includes("/ngo"),
       icon: (
         <svg
           className="w-6 h-6 "
@@ -33,8 +33,8 @@ function Sidebar() {
     },
     {
       name: "Donors",
-      link: "/projects",
-      active: router.pathname.includes("/projects"),
+      link: "/donors",
+      active: router.pathname.includes("/donors"),
       icon: (
         <svg
           className="w-6 h-6"
@@ -53,8 +53,8 @@ function Sidebar() {
     },
     {
       name: "Vendors",
-      link: "/donors",
-      active: router.pathname.includes("/donors"),
+      link: "/vendors",
+      active: router.pathname.includes("/vendors"),
       icon: (
         <svg
           className="w-6 h-6 "
@@ -73,8 +73,8 @@ function Sidebar() {
     },
     {
       name: "Beneficiaries",
-      link: "/benefits",
-      active: router.pathname.includes("/benefits"),
+      link: "/beneficiaries",
+      active: router.pathname.includes("/beneficiaries"),
       icon: (
         <svg
           className="w-6 h-6 "

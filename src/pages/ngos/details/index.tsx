@@ -132,7 +132,7 @@ function Index() {
           <div className=" ">
             <FoundationCard
               title="Blue Orange Foundation"
-              logo=""
+              logo="/assets/blue-orange.png"
               about="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget molestie nisl commodo nulla. Diam eget massa magna diam adipiscing porttitor nullam volutpat egestas. Enim in sapien auctor a amet. Scelerisque vitae porta dictum egestas gravida elementum arcu."
               phone="+234 813 220 5304"
               email="example@gmail.com"

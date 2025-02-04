@@ -8,6 +8,7 @@ import PauseProjectModal from "@/components/modal/project/PauseProjectMoadal";
 import Link from "next/link";
 import ArrowDownIcon from "@/components/icon/ArrowDownIcon";
 import { Button } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectTableProps {
   setIsOpen: React.Dispatch<React.SetStateAction<"item" | "cash" | undefined>>;
@@ -88,6 +89,8 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
   );
   const [openPause, setOpenPause] = useState<string | undefined>(undefined);
 
+
+
   return (
     <div className=" bg-white rounded-lg shadow-md">
       {isOpen === "cash" && (
@@ -165,10 +168,10 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
         </div>
       </div>
 
-     
+
       <table className="w-full text-left text-[16px] font-medium border-collapse text-[#25396F]">
-          <thead className="h-[59px]">
-            <tr className="bg-[#F7F7F7]">
+        <thead className="h-[59px]">
+          <tr className="bg-[#F7F7F7]" >
             <th className="px-4 py-2 font-medium text-xs lg:text-[16px] font-sans text-[#25396F]">
               Name
             </th>
@@ -194,6 +197,7 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
           {projects.map((project, index) => (
             <tr key={index}
             >
+
               <td className="px-4  py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F] ">
                 {project.name}
               </td>
@@ -206,22 +210,23 @@ const OrganizationsTable = ({ setIsOpen, isOpen }: ProjectTableProps) => {
               <td className="px-4 py-6 mt-8 font-normal text-xs lg:text-[16px] font-sans text-[#25396F]">
                 {project.beneficiaries}
               </td>
-            
-              <td> 
+
+              <td>
                 <span
-                  className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${
-                    project.status === "Active" ? `bg-[#D1F7C4]` : `black`
-                  } ${statusClasses[project.status]}`}
+                  className={`text-xs font-medium px-2 py-1 mt-8 rounded-lg ${project.status === "Active" ? `bg-[#D1F7C4]` : `black`
+                    } ${statusClasses[project.status]}`}
                 >
                   {project.status}
                 </span>
               </td>
               <td className="px-4 py-6 mt-8 h-10 w-10 text-xs">
-                <Button>
-                  <div className="border border-[#707FA3] rounded py-[8px] px-[12px]">
-                    <ArrowDownIcon height="20" width="20" fill="#17CE89" />
-                  </div>
-                </Button>
+                <Link href={"ngos/details"} key={index}>
+                  <Button>
+                    <div className="border border-[#707FA3] rounded py-[8px] px-[12px]">
+                      <ArrowDownIcon height="20" width="20" fill="#17CE89" />
+                    </div>
+                  </Button>
+                </Link>
               </td>
             </tr>
           ))}

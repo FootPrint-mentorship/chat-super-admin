@@ -12,6 +12,7 @@ import SortIcon from "@/components/icon/SortIcon";
 import { Dropdown } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
+import Link from "next/link";
 
 type Project = {
   id: string;
@@ -20,9 +21,9 @@ type Project = {
   phoneNumber: string;
   email: string;
   dateofbirth: string;
-  gender:string;
+  gender: string;
   verification: "Verified" | "Unverified";
-  
+
   date: string;
   avatar: string;
 };
@@ -46,7 +47,7 @@ const projects: Project[] = [
     beneficiary: "Lasly Alexander",
     phoneNumber: "+234705555555",
     email: "example@gmail.com",
-    gender:"Male",
+    gender: "Male",
     dateofbirth: "14th-April-2001",
     verification: "Verified",
     date: "12-Dec-2022",
@@ -59,7 +60,7 @@ const projects: Project[] = [
     phoneNumber: "+234705555555",
     email: "example@gmail.com",
     dateofbirth: "14th-April-2001",
-    gender:"Female",
+    gender: "Female",
     verification: "Verified",
     date: "12-Dec-2022",
     avatar: "/public/Avatar.png",
@@ -71,7 +72,7 @@ const projects: Project[] = [
     phoneNumber: "+234705555555",
     email: "example@gmail.com",
     dateofbirth: "14th-April-2001",
-    gender:"Female",
+    gender: "Female",
     verification: "Unverified",
     date: "12-Dec-2022",
     avatar: "/public/Avatar.png",
@@ -83,7 +84,7 @@ const projects: Project[] = [
     phoneNumber: "+234705555555",
     email: "example@gmail.com",
     dateofbirth: "14th-April-2001",
-    gender:"Female",
+    gender: "Female",
     verification: "Unverified",
     date: "12-Dec-2022",
     avatar: "/public/Avatar.png",
@@ -95,7 +96,7 @@ const projects: Project[] = [
     phoneNumber: "+234705555555",
     email: "example@gmail.com",
     dateofbirth: "14th-April-2001",
-    gender:"Female",
+    gender: "Female",
     verification: "Unverified",
     date: "12-Dec-2022",
     avatar: "/public/Avatar.png",
@@ -153,7 +154,7 @@ const DonorsLayouts = () => {
     }
   };
 
-  
+
 
   const handleClose = () => {
     setIsModalOpen(false); // Close the modal
@@ -161,7 +162,7 @@ const DonorsLayouts = () => {
 
   const GoBackButton = () => {
     const router = useRouter();
-  
+
     return (
       <button
         onClick={() => router.back()}
@@ -217,14 +218,14 @@ const DonorsLayouts = () => {
                 color="success"
                 className="rounded-lg"
                 /> */}
-                <Button
-                  icon={<ExcelIcon />}
-                  text="Export"
-                  variant="outlined"
-                  color="success"
-                  className="rounded-lg w-[172px] h-[52px] px-[44px] py-[16px] gap-[10px] rounded-tl-[8px] border-t border-gray-200 opacity-100
+              <Button
+                icon={<ExcelIcon />}
+                text="Export"
+                variant="outlined"
+                color="success"
+                className="rounded-lg w-[172px] h-[52px] px-[44px] py-[16px] gap-[10px] rounded-tl-[8px] border-t border-gray-200 opacity-100
 "
-                />
+              />
             </div>
           </div>
 
@@ -233,10 +234,10 @@ const DonorsLayouts = () => {
               <h2 className="text-xl font-semibold">All Beneficiaries</h2>
               <div className="w-[181px] h-[40px] gap-[25px] opacity-100">
                 <label className="mr-2 text-sm font-medium mb-2">Filter by:</label>
-                
+
                 <Select
-                
-                className="w-[101px] h-[40px] px-[16px] py-[8px] gap-[4px] opacity-100"
+
+                  className="w-[101px] h-[40px] px-[16px] py-[8px] gap-[4px] opacity-100"
                   size="sm"
                   variant="outlined"
                   value={listFilter}
@@ -249,7 +250,7 @@ const DonorsLayouts = () => {
                     { value: "Last 90 days", label: "Last 90 days" },
                   ]}
                 />
-               
+
               </div>
             </div>
 
@@ -277,7 +278,7 @@ const DonorsLayouts = () => {
               </thead>
               <tbody>
                 {projects.map((project, index) => (
-                  <tr key={project.id} className="border-gray-200 border-t bg-[#FFFFFF] rounded-lg h-[78px] w-full ">
+                  <tr key={project.id} className="border-gray-200 border-t bg-[#FFFFFF] rounded-lg h-[78px] w-full">
                     <td className="px-4 py-6 text-xs ">
                       <input
                         type="checkbox"
@@ -300,9 +301,8 @@ const DonorsLayouts = () => {
                     <td className="px-8 py-6 text-xs">{project.gender}</td>
                     <td className="px-8 py-6 text-xs">{project.dateofbirth}</td>
                     <span
-                      className={`text-xs font-medium px-2 py-1 rounded-lg ${
-                        typeClasses[project.verification]
-                      }`}
+                      className={`text-xs font-medium px-2 py-1 rounded-lg ${typeClasses[project.verification]
+                        }`}
                     >
                       {project.verification}
                     </span>
@@ -310,46 +310,46 @@ const DonorsLayouts = () => {
                     {/* <td className="px-8 py-6 text-xs">{project.date}</td> */}
                     <td></td>
                     <td className="relative px-6 py-6 text-xs  border-gray-200">
-  <button
-    className="text-green-800 hover:text-green-700"
-    onClick={() => toggleDropdown(index)}
-  >
-    View
-  </button>
-  {activeDropdown === index && (
-    <div className="absolute right-0 z-10 mt-2 bg-white rounded-lg ">
-      <button
-        onClick={closeDropdown}
-        className="absolute top-1 right-1 text-gray-500 hover:text-gray-800 focus:outline-none"
-      >
-        ✕
-      </button>
-      <ul className="py-2 text-gray-700 text-sm border border-gray-200">
-        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200">
-          View
-        </li>
-        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200">
-          Activate
-        </li>
-        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-          Deactivate
-        </li>
-      </ul>
-    </div>
-  )}
-</td>
+                      <button
+                        className="text-green-800 hover:text-green-700"
+                        onClick={() => toggleDropdown(index)}
+                      >
+                        View
+                      </button>
+                      {activeDropdown === index && (
+                        <div className="absolute right-0 z-10 mt-2 bg-white rounded-lg ">
+                          <button
+                            onClick={closeDropdown}
+                            className="absolute top-1 right-1 text-gray-500 hover:text-gray-800 focus:outline-none"
+                          >
+                            ✕
+                          </button>
+                          <ul className="py-2 text-gray-700 text-sm border border-gray-200">
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200">
+                              <Link href={`/beneficiaries/profile?id=${project.id}`}>View</Link>
+                          </li>
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200">
+                            Activate
+                          </li>
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            Deactivate
+                          </li>
+                        </ul>
+                        </div>
+                      )}
+                  </td>
 
                   </tr>
                 ))}
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
         </div>
+    </div>
         {/* {isAddVendorModalOpen && (
           <AddBeneficiaries  onClose={handleClose}/>
         )} */}
-      </DashboardLayout>
-    </div>
+      </DashboardLayout >
+    </div >
   );
 };
 

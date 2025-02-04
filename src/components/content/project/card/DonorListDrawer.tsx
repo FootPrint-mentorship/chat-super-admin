@@ -164,7 +164,7 @@ const data = [
 
 
     {
-        : "Ralph Edwards",
+        donor: "Ralph Edwards",
         email: "michael.mitc@example.com",
         status: "Donated",
         amountDonated: "N125,000.00",
